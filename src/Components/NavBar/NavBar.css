@@ -1,0 +1,22 @@
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(255, 225, 0);
+}
+
+.navbar-light:hover .navbar-nav:hover .nav-link:hover ,#ofertas:hover, #ofertas.active, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
+    color: rgb(109, 109, 64);
+}
+
+.navbar{
+  background-color: #242424;
+
+}
+
+#ofertas{
+    color: rgb(255, 123, 0);
+}
+
+
+.nav-link{
+    padding: 0;
+}
+
