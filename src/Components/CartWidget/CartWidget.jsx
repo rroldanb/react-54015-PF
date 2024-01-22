@@ -1,17 +1,17 @@
 // import React from 'react'
 import { BsCart } from "react-icons/bs";
 
-import './CartWidget.css';
+import "./CartWidget.css";
 
 const CartWidget = () => {
   return (
     <div className="container">
-        <button>
+      <button>
         <BsCart />
-        <span className="numerito">0</span>
-        </button>
+      </button>
+      <span className="numerito">0</span>
     </div>
-  )
-}
+  );
+};
 
-export default CartWidget
+export default CartWidget;
