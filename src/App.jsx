@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <ItemListContainer greeting="RR&apos;s Grill Store" />
+      <ItemListContainer greeting="Bienvenidos a RR&apos;s Grill Store" message="Todo para tu Parrilla"/>
     </>
   )
 }

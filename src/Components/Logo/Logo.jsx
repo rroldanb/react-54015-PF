@@ -1,9 +1,10 @@
 // import React from 'react'
 import './Logo.css'
-const Logo = () => {
+const Logo = ({width, height}) => {
   return (
     <div>
-        <img src="src/assets/rr_logo.png" alt="Logo RR Grill Store"></img>
+        <img src="src/assets/rr_logo.png" alt="Logo RR Grill Store" width={width}
+        height={height} />
     </div>
   )
 }

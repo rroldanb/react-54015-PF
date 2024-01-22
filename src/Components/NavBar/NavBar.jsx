@@ -10,7 +10,7 @@ function NavBar() {
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
           <Navbar.Brand href="#home">
-            <Logo />
+            <Logo width={35} height={50}/>
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Todos</Nav.Link>
