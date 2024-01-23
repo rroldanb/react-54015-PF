@@ -1,0 +1,27 @@
+.sliding-text-container {
+    overflow: hidden;
+    margin-top: -23rem;
+    width: 350px;
+    margin-left: 22%;
+  }
+  
+  .sliding-text {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 7rem;
+    font-weight: 600;
+    color: black;
+    /* width: 150px; */
+    animation: slideLeft 7s linear infinite; 
+    animation-delay: 10s; 
+  }
+  
+  @keyframes slideLeft {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
