@@ -1,34 +1,47 @@
-//import React from 'react';
-import {Navbar, Container, Nav} from "react-bootstrap";
+
+import { Navbar, Container, Nav } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
+
 import "./NavBar.css";
 import Logo from "../Logo/Logo";
 import CartWidget from "../CartWidget/CartWidget";
 
-function NavBar() {
+import productosJson from "../../data/productos.json";
+
+
+
+export default function NavBar () {
+
+  const categorias = [...new Set(productosJson.filter(producto => producto.activo && producto.categoria!=="Descuentos").map(producto => producto.categoria))];
+
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-        <Container>
-          <Navbar.Brand href="#home">
-            <Logo width={35} height={50}/>
-          </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Todos</Nav.Link>
-            <Nav.Link href="#carnes">Carnes Premium</Nav.Link>
-            <Nav.Link href="#parrillas">Parrillas</Nav.Link>
-            <Nav.Link href="#accesorios">Accesorios</Nav.Link>
-            <Nav.Link href="#ofertas" id="ofertas">Ofertas</Nav.Link>
-            
-          </Nav>
-          <Nav className="ml-auto">
-              <Nav.Link href="#shoppingCart"> <CartWidget /> </Nav.Link>
-
+    <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <Container>
+        <Navbar.Brand>
+          <Link to="/">
+            <Logo width={100} height={100} />
+          </Link>
+        </Navbar.Brand>
+    <Nav className="me-auto">
+      {categorias.map(categoria => (
+        <NavLink key={categoria} to={`/categoria/${categoria}`}>
+          {categoria}
+        </NavLink>
+      ))}
+      <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink>
+    </Nav>
+    <Nav className="ml-auto">
+            <Nav.Link href="#shoppingCart">
+              
+              <CartWidget />
+            </Nav.Link>
           </Nav>
         </Container>
-
       </Navbar>
     </>
   );
 }
 
-export default NavBar;
+
+

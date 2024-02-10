@@ -1,8 +1,15 @@
-.navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-nav .nav-link ,a{
     color: rgb(255, 225, 0);
+    text-decoration: none;
+    padding: 1rem;
 }
 
-.navbar-light:hover .navbar-nav:hover .nav-link:hover ,#ofertas:hover, #ofertas.active, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
+a.active{
+    color: orange;
+
+}
+
+.navbar-light:hover .navbar-nav:hover .nav-link:hover ,#ofertas:hover, a:hover, #ofertas.active, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
     color: rgb(109, 109, 64);
 }
 

@@ -1,21 +1,21 @@
+import "./App.css";
 
-import './App.css'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from './Components/NavBar/NavBar'
-import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
-import Logo from './Components/Logo/Logo'
-import Pronto from './Components/Pronto/Pronto'
+import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./Components/NavBar/NavBar";
+import ItemDetailContainer from "./Components/ItemDetailContainer/ItemDetailContainer";
 function App() {
-
-
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
-      <ItemListContainer greeting="Bienvenidos a RR&apos;s Grill Store" message="Todo para tu Parrilla"/>
-      <Logo width={350} height={500}/>
-      <Pronto />
-    </>
-  )
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/categoria/:categoryId" element={<ItemListContainer />} />
+        <Route path="/producto/:itemId" element={<ItemDetailContainer />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

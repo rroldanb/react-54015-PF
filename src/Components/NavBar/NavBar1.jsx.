@@ -1,0 +1,39 @@
+
+import { Navbar, Container, Nav } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
+
+import "./NavBar.css";
+import Logo from "../Logo/Logo";
+import CartWidget from "../CartWidget/CartWidget";
+
+function NavBar1() {
+  return (
+    <>
+      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+        <Container>
+          <Navbar.Brand>
+            <Link to="/">
+              <Logo width={100} height={100} />
+            </Link>
+          </Navbar.Brand>
+          <Nav className="me-auto">
+          <NavLink to="/categoria/Carnes">Carnes Premium</NavLink>
+          <NavLink to="/categoria/Bebidas">Bebestibles</NavLink>
+          <NavLink to="/categoria/Instrumentos">Instrumentos</NavLink>
+          <NavLink to="/categoria/Electrónicos">Electrónicos</NavLink>
+          <NavLink to="/categoria/Otros">Otros</NavLink>
+          <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink>
+          </Nav>
+          <Nav className="ml-auto">
+            <Nav.Link href="#shoppingCart">
+              
+              <CartWidget />
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
+  );
+}
+
+export default NavBar;
