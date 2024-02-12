@@ -1,5 +1,6 @@
 import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toPesos } from "../../helpers/Utils";
 
 export default function Item({ item }) {
   return (
@@ -28,8 +29,17 @@ export default function Item({ item }) {
           </Link>
           <Card.Body>
             <Card.Title>{item.nombre}</Card.Title>
-            <Card.Text>{item.precio}</Card.Text>
-            <Card.Text>{item.id}</Card.Text>
+            <Card.Text>{toPesos(item.precio)}</Card.Text>
+            <Card.Text 
+            style={{fontSize:'.7rem'}}
+            >Stock:{item.stock + ' '+ item.unidad}</Card.Text>
+            <div className="card-actions justify-end gap-0 mt-2">
+                <Link to={`/producto/${item.id}`} className="btn btn-warning">
+                  Ver Detalles
+                </Link>
+              </div>
+
+
           </Card.Body>
         </Card>
       </Col>

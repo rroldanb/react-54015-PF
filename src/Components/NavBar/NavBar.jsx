@@ -29,7 +29,7 @@ export default function NavBar () {
           {categoria}
         </NavLink>
       ))}
-      <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink>
+      {/* <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink> */}
     </Nav>
     <Nav className="ml-auto">
             <Nav.Link href="#shoppingCart">

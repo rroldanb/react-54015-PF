@@ -4,42 +4,27 @@ import "./ItemListContainer.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import productosJson from "../../data/productos.json";
 import ItemList from "../ItemList/ItemList";
+import { buscaCategoria } from "../../helpers/pideDatos";
 
-function asyncMock(categoryId) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (categoryId === undefined) {
-        const productosActivos = productosJson.filter((item) => {
-          return item.activo;
-        });
-        resolve(productosActivos);
-      } else {
-        const productosFiltrados = productosJson.filter((item) => {
-          return item.activo && item.categoria === categoryId;
-        });
-        if (productosFiltrados.length === 0) {
-          reject("No hay elementos disponibles para esta categoría");
-        }
-        resolve(productosFiltrados);
-      }
-    }, 2000);
-  });
-}
+
 
 export default function ItemListContainer() {
   const { categoryId } = useParams();
   const [productos, setProductos] = useState([]);
   const greeting = "Bienvenidos a RR's Grill Store"
-  const message = categoryId ? `Categoría seleccionada: ${categoryId}` : "De todo para tu parrilla"
+  let message = categoryId ? `Categoría seleccionada: ${categoryId}` : 'Todo Para tu Parrilla'
+
   useEffect(() => {
-    asyncMock(categoryId)
+    buscaCategoria(categoryId)
       .then((res) => setProductos(res))
       .catch((message) => {
         console.log(message);
       });
   }, [categoryId]);
+
+  message = productos.length > 0 ? message : `No disponemos de productos para la categoría ${categoryId}`
+
 
   return (
     <main>
