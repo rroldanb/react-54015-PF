@@ -471,17 +471,6 @@
   "descripcion": "Set de cubiertos de acero inoxidable, elegantes y duraderos.",
   "activo": true,
   "categoria": "Accesorios"
-},
-{
-  "id": "producto-no-encontrado",
-  "nombre": "Producto no encontrado",
-  "precio": 0,
-  "stock": 0,
-  "unidad": "",
-  "img": "",
-  "descripcion": "Lo sentimos, el producto que buscas no está disponible en este momento.",
-  "activo": false,
-  "categoria": ""
 }
 ]
   

@@ -1,5 +1,5 @@
 import { Row, Col } from "react-bootstrap";
-import { toPesos } from "../../helpers/Utils";
+import { toPesos } from "../../helpers/utils";
 import ItemCantidad from "../ItemCantidad/ItemCantidad";
 
 export default function ItemDetail({ producto, greeting, message }) {

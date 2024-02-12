@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { buscaId } from "../../helpers/pideDatos";
+import { buscaId , fakeProduct} from "../../helpers/pideDatos";
+import LeonParrillero from "../LeonParrillero/LeonParrillero";
+
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState(null);
   const { itemId } = useParams();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     buscaId(itemId)
@@ -13,31 +16,30 @@ export default function ItemDetailContainer() {
       .catch((messageNF) => {
         console.log(messageNF);
         setItem(fakeProduct);
-      });
+      })
+      .finally(() => setLoading(false));
+      
   }, [itemId]);
 
   const greeting = "RR's Grill Store";
   const message = item
     ? "Detalles de tu producto:"
     : "El producto que buscas ya no está disponible";
-
-    const fakeProduct = {
-      "id": "producto-no-encontrado",
-      "nombre": "Producto no encontrado",
-      "precio": 0,
-      "stock": 0,
-      "unidad": "",
-      "img": "https://cdnx.jumpseller.com/todo-ssangyong/image/5630694/resize/635/635?1638889438",
-      "descripcion": "Lo sentimos, el producto que buscas no está disponible en este momento.",
-      "activo": false,
-      "categoria": ""
-    };
-  
-  
   
   return (
     <main>
-      {item && <ItemDetail producto={item} greeting={greeting} message= {message} />}
+      
+      
+
+      {loading ? (
+        <>
+          <LeonParrillero />
+        </>
+      ) : (
+        item && <ItemDetail producto={item} greeting={greeting} message= {message} />
+      )}
+
+
     </main>
   );
 

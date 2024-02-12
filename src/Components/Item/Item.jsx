@@ -1,6 +1,6 @@
 import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { toPesos } from "../../helpers/Utils";
+import { toPesos } from "../../helpers/utils";
 
 export default function Item({ item }) {
   return (

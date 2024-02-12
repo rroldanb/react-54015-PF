@@ -1,0 +1,32 @@
+.LeonContainer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .LeonImage {
+    width: 100%;
+    height: auto;
+  }
+  
+  .smoke {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/public/smoke.png'); 
+    background-size: cover;
+    opacity: 0.9; 
+    animation: smokeAnimation 3s infinite linear; 
+  }
+  
+  @keyframes smokeAnimation {
+    0% {
+        transform: translateY(0%);
+      }
+    100% {
+      transform: translateY(-10%);
+    }
+
+  }
+  
