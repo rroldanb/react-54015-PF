@@ -35,19 +35,19 @@ export default function ItemListContainer() {
   return (
     <main>
 
-{loading ? (
+      {loading ? (
         <>
           <LeonParrillero />
         </>
       ) : (
         <>
-        <h2>{greeting}</h2>
-      <p>{message}</p>
-      <ItemList productos={productos} />
-      </>
+          <h2>{greeting}</h2>
+          <p>{message}</p>
+          <ItemList productos={productos} />
+        </>
       )}
 
-      
+
     </main>
   );
 }

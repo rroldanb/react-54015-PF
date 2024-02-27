@@ -10,32 +10,31 @@ import productosJson from "../../data/productos.json";
 
 
 
-export default function NavBar () {
+export default function NavBar() {
 
-  const categorias = [...new Set(productosJson.filter(producto => producto.activo && producto.categoria!=="Descuentos").map(producto => producto.categoria))];
+  const categorias = [...new Set(productosJson.filter(producto => producto.activo && producto.categoria !== "Descuentos").map(producto => producto.categoria))];
 
   return (
     <>
-    <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-      <Container>
-        <Navbar.Brand>
-          <Link to="/">
-            <Logo width={100} height={100} />
-          </Link>
-        </Navbar.Brand>
-    <Nav className="me-auto">
-      {categorias.map(categoria => (
-        <NavLink key={categoria} to={`/categoria/${categoria}`}>
-          {categoria}
-        </NavLink>
-      ))}
-      {/* <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink> */}
-    </Nav>
-    <Nav className="ml-auto">
-            <Nav.Link href="#shoppingCart">
-              
+      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+        <Container>
+          <Navbar.Brand>
+            <Link to="/">
+              <Logo width={100} height={100} />
+            </Link>
+          </Navbar.Brand>
+          <Nav className="me-auto">
+            {categorias.map(categoria => (
+              <NavLink key={categoria} to={`/categoria/${categoria}`}>
+                {categoria}
+              </NavLink>
+            ))}
+            {/* <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink> */}
+          </Nav>
+          <Nav className="ml-auto">
+            <Link to="/checkout">
               <CartWidget />
-            </Nav.Link>
+            </Link>
           </Nav>
         </Container>
       </Navbar>
