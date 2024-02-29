@@ -1,6 +1,6 @@
 import "./Checkout.css"
-import getFirestore from 'firebase/firestore'
-const db = getFirestore()
+// import getFirestore from 'firebase/firestore'
+// const db = getFirestore()
 
 const Checkout = () => {
   return (

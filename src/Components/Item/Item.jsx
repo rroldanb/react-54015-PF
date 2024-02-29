@@ -11,6 +11,7 @@ export default function Item({ item }) {
           bg="dark"
           text="white"
           className="mb-2 itemCards"
+          key={item.id}
         >
           <Link className="ver-mas" to={`/producto/${item.id}`}>
 

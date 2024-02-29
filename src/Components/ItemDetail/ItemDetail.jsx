@@ -2,7 +2,11 @@ import { Row, Col } from "react-bootstrap";
 import { toPesos } from "../../helpers/utils";
 import ItemCantidad from "../ItemCantidad/ItemCantidad";
 
+
+
 export default function ItemDetail({ producto, greeting, message }) {
+  
+  
   return (
     <div>
       <header>
@@ -10,7 +14,7 @@ export default function ItemDetail({ producto, greeting, message }) {
         <p>{message}</p>
       </header>
 
-      <section className="ItemDetailContainer container ">
+      <section className="ItemDetailContainer container text-center">
         <Row xs={1} md={2} className="g-5">
           <Col>
             <div className="itemDetailImg" >

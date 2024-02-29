@@ -4,40 +4,84 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./NavBar.css";
 import Logo from "../Logo/Logo";
+import LeonParrillero from "../LeonParrillero/LeonParrillero";
 import CartWidget from "../CartWidget/CartWidget";
 
-import productosJson from "../../data/productos.json";
+
+import { collection, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 
 
 export default function NavBar() {
 
-  const categorias = [...new Set(productosJson.filter(producto => producto.activo && producto.categoria !== "Descuentos").map(producto => producto.categoria))];
+  const db = getFirestore();
+  const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true)
+
+    const categoriesRef = collection(db, "categorias");
+    const orderedCategoriesRef = query(categoriesRef, orderBy("priority"));
+
+    // getDocs(categoriesRef).then((collection) => {
+    //   const categoriesMap = collection.docs.map((doc) => {
+    //     return { id: doc.id, ...doc.data() };
+    //   });
+
+      getDocs(orderedCategoriesRef).then((snapshot) => {
+        const categoriesMap = snapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+
+      setCategories(categoriesMap);
+      setLoading(false);
+    }).catch((error) => {
+      console.error("Error obteniendo las categorías:", error);
+      setLoading(true);
+    });
+
+  }, [db]);
+
+
 
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-        <Container>
-          <Navbar.Brand>
-            <Link to="/">
-              <Logo width={100} height={100} />
-            </Link>
-          </Navbar.Brand>
-          <Nav className="me-auto">
-            {categorias.map(categoria => (
-              <NavLink key={categoria} to={`/categoria/${categoria}`}>
-                {categoria}
-              </NavLink>
-            ))}
-            {/* <NavLink to="/categoria/Descuentos" id="ofertas">Ofertas</NavLink> */}
-          </Nav>
-          <Nav className="ml-auto">
-            <Link to="/checkout">
-              <CartWidget />
-            </Link>
-          </Nav>
-        </Container>
-      </Navbar>
+
+      {loading ? (
+        <>
+          <LeonParrillero />
+        </>
+      ) : (
+        <>
+          <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+            <Container>
+              <Navbar.Brand>
+                <Link to="/">
+                  <Logo width={100} height={100} />
+                </Link>
+              </Navbar.Brand>
+              <Nav className="me-auto">
+                {categories.map(categoria => (
+                  <NavLink key={categoria.id} to={`/categoria/${categoria.key}`}>
+                    {categoria.descripcion}
+                  </NavLink>
+                ))}
+              </Nav>
+              <Nav className="ml-auto">
+                <Link to="/checkout">
+                  <CartWidget />
+                </Link>
+              </Nav>
+            </Container>
+          </Navbar>
+
+        </>
+      )}
+
+
+
     </>
   );
 }

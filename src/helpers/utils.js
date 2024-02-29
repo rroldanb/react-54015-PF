@@ -3,6 +3,7 @@ export function toCapital(str) {
 }
 
 export function toPesos(precio) {
+  precio = parseFloat(precio) 
   if (typeof precio !== 'number') {
     throw new Error('El precio debe ser un número');
   }
