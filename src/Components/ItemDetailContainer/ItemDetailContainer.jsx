@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { fakeProduct } from "../../helpers/pideDatos";
+import { fakeProduct } from "../../data/fakeProduct";
 import LeonParrillero from "../LeonParrillero/LeonParrillero";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 
+import { db } from "../../data/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState(null);
@@ -15,10 +16,8 @@ export default function ItemDetailContainer() {
   useEffect(() => {
     setLoading(true);
 
-    const db = getFirestore();
 
-    // Codigo para traer UN producto
-    const productoRef = doc(db, "Productos", itemId);
+    const productoRef = doc(db, "products", itemId);
 
     getDoc(productoRef).then((documento) => {
       if (documento.exists()) {

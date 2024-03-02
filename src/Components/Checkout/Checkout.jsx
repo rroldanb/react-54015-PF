@@ -1,16 +1,60 @@
 import "./Checkout.css"
-// import getFirestore from 'firebase/firestore'
-// const db = getFirestore()
+
+import  { useContext, useState } from 'react'
+import { CartContext } from "../../Context/CartContext";
+
+import { useForm } from 'react-hook-form';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../data/firebaseConfig";
 
 const Checkout = () => {
+
+    
+    const [pedidoId, setPedidoId] = useState("");
+
+    const { cart, totalPrice, clearCart } = useContext(CartContext);
+
+    const { register, handleSubmit } = useForm();
+
+    const comprar = (data) => {
+        const pedido = {
+            cliente: data,
+            productos: cart,
+            total: totalPrice()
+        }
+        console.log(pedido);
+
+        const pedidosRef = collection(db, "orders");
+
+        addDoc(pedidosRef, pedido)
+            .then((doc) => {
+                setPedidoId(doc.id);
+                clearCart();
+            })
+
+    }
+
+    if (pedidoId) {
+        return (
+            <div className="container" style={{marginTop:"18rem"}}>
+                <h1 className="main-title">Muchas gracias por tu compra</h1>
+                <p>Tu número de pedido es: {pedidoId}</p>
+            </div>
+        )
+    }
+
   return (
-    <div className="checkout">
-        <label htmlFor="name">Nombre</label>
-        <input type="text" id='name' />
-        <label htmlFor="email">email</label>
-        <input type="text" id='email' />
-        <label htmlFor="phone">telefono</label>
-        <input type="text" id='phone' />
+    <div className="container" style={{marginTop:"18rem"}}>
+        <h1 className="main-title">Finalizar compra</h1>
+        <form className="formulario" onSubmit={handleSubmit(comprar)}>
+
+            <input type="text" placeholder="Ingresá tu nombre" {...register("nombre")} />
+            <input type="email" placeholder="Ingresá tu e-mail" {...register("email")} />
+            <input type="phone" placeholder="Ingresá tu teléfono" {...register("telefono")} />
+
+            <button className="enviar" type="submit">Comprar</button>
+
+        </form>
     </div>
   )
 }

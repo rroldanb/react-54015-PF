@@ -1,0 +1,43 @@
+.cart-container{
+    background-color: darkslategrey;
+    border-radius: 1rem;
+}
+
+
+.cart-header{
+    margin-top: 18rem;
+    color: white;
+    border-radius: 1rem;
+    background-color: darkslategrey;
+}
+
+
+.cartList{
+    background-color: gray;
+    border-radius: 1rem;
+    display: flex;
+    display: grid;
+  grid-template-columns: 0.5fr 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+}
+
+
+
+
+.carrito-producto-imagen {
+  width: 5rem;
+  border-radius: 1rem;
+  transition: transform 0.2s ease-in-out;
+}
+.carrito-producto-imagen:hover {
+  transform: scale(1.25);
+}
+
+.carrito-producto small {
+  font-size: 0.75rem;
+}
+
+.cart-footer{
+    display: flex;
+    justify-content: space-around;
+}

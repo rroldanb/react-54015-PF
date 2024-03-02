@@ -1,47 +1,31 @@
-import { useState } from 'react';
 
+import "./ItemCantidad.css"
 
-const ItemCantidad = ({ stock, initial }) => {
-  let [count, setCount] = useState(1);
+const ItemCantidad = ({ count, handlerResta, handlerSuma, accionBoton , textoBoton}) => {
 
-  const handlerResta = () => {
-    if (count > initial) {
-      setCount(count - 1);
-    }
-  };
-
-  const handlerSuma = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-  };
 
   return (
-    <div 
-    style={{display:'flex', flexDirection:'row'}}
-    className='flex justify-center itemCantidad'
-    >
-       
 
-      <div className="m-2"
-          style={{display:'flex', flexDirection:'row'}}
+
+      <div className="m-2 flex justify-center itemCantidad"
+        style={{ display: 'flex', flexDirection: 'row' }}
       >
-        <button className="btn btn-warning" onClick={handlerResta}>
+        <button className="btn btn-warning btnHandleCantidad" onClick={handlerResta}>
           -
         </button>
-        <p className="text-center px-3">{count}</p>
-        <button className="btn btn-warning" onClick={handlerSuma}>
+        <p className="text-center px-3 txtCantidad">{count}</p>
+        <button className="btn btn-warning btnHandleCantidad" onClick={handlerSuma}>
           +
         </button>
-      </div>
       <div>
-        <button className="btn btn-warning m-2 px-4"
-        style={{fontSize: '1.5rem', width:'300px'}}
-        >Agregar al carrito</button>
+        <button className="btn btn-warning px-3 btnAccion"
+          style={{ fontSize: '1.5rem'}}
+          onClick={accionBoton}
+        >{textoBoton}</button>
       </div>
-    
+      </div>
 
-    </div>
+
   );
 };
 

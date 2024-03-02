@@ -1,5 +1,5 @@
 h2 {
-    margin-top: 10rem;
+    /* margin-top: 10rem; */
     font-size: 3rem;
     color: orange;
     font-family:  ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -10,3 +10,6 @@ p{
     font-size: 1.5rem;
 }
 
+.titulo{
+    margin-top: 10rem;
+}

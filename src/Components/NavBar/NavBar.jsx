@@ -25,10 +25,6 @@ export default function NavBar() {
     const categoriesRef = collection(db, "categorias");
     const orderedCategoriesRef = query(categoriesRef, orderBy("priority"));
 
-    // getDocs(categoriesRef).then((collection) => {
-    //   const categoriesMap = collection.docs.map((doc) => {
-    //     return { id: doc.id, ...doc.data() };
-    //   });
 
       getDocs(orderedCategoriesRef).then((snapshot) => {
         const categoriesMap = snapshot.docs.map((doc) => {
@@ -57,11 +53,13 @@ export default function NavBar() {
         <>
           <Navbar bg="dark" data-bs-theme="dark" fixed="top">
             <Container>
+
               <Navbar.Brand>
                 <Link to="/">
                   <Logo width={100} height={100} />
                 </Link>
               </Navbar.Brand>
+
               <Nav className="me-auto">
                 {categories.map(categoria => (
                   <NavLink key={categoria.id} to={`/categoria/${categoria.key}`}>
@@ -69,11 +67,13 @@ export default function NavBar() {
                   </NavLink>
                 ))}
               </Nav>
+
               <Nav className="ml-auto">
-                <Link to="/checkout">
+                <NavLink to="/shoppingcart">
                   <CartWidget />
-                </Link>
+                </NavLink>
               </Nav>
+
             </Container>
           </Navbar>
 

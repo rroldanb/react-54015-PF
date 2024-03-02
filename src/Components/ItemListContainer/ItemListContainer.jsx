@@ -7,9 +7,9 @@ import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 import LeonParrillero from "../LeonParrillero/LeonParrillero";
 
+import { db } from "../../data/firebaseConfig";
 
 import {
-  getFirestore,
   collection,
   getDocs,
   query,
@@ -21,26 +21,18 @@ export default function ItemListContainer() {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
-
-
   const greeting = "Bienvenidos a RR's Grill Store"
   let message = categoryId ? `Categoría seleccionada: ${categoryId}` : 'Todo Para tu Parrilla'
-
-
 
   useEffect(() => {
     setLoading(true);
   
-    const db = getFirestore();
-  
-
     const productosRef = categoryId ? 
       query(
-        collection(db, "Productos"),
+        collection(db, "products"),
         where("categoryKey", "==", categoryId)
       ) : 
-      collection(db, "Productos");
+      collection(db, "products");
   
     getDocs(productosRef).then((collection) => {
       const products = collection.docs.map((doc) => {
@@ -53,21 +45,24 @@ export default function ItemListContainer() {
       console.error("Error obteniendo productos:", error);
       setLoading(false); 
     });
+    
   }, [categoryId]); 
+
+
+
 
   message = productos.length > 0 ? message : `Disponemos de ${productos.length} productos para la categoría ${categoryId}`
 
 
   return (
-    <main>
-
+    <main >
       {loading ? (
         <>
           <LeonParrillero />
         </>
       ) : (
         <>
-          <h2>{greeting}</h2>
+          <h2 className="titulo">{greeting}</h2>
           <p>{message}</p>
           <ItemList productos={productos} />
           
