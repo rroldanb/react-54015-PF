@@ -1,8 +1,14 @@
+import "./Item.css"
 import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toPesos } from "../../helpers/utils";
+import { BsCart } from "react-icons/bs";
+import { useContext } from "react";
+import { CartContext } from "../../Context/CartContext";
 
 export default function Item({ item }) {
+  const { addToCartFast } = useContext(CartContext);
+
   return (
     <div>
       <Col>
@@ -24,21 +30,24 @@ export default function Item({ item }) {
                 maxHeight: "18rem",
                 minHeight: "18rem",
                 width: "100%",
-                objectFit: "contain",
+                objectFit: "fill"
               }}
             />
           </Link>
           <Card.Body>
-            <Card.Title>{item.nombre}</Card.Title>
+            <Card.Title style={{ height: "3rem" }}>{item.nombre}</Card.Title>
             <Card.Text>{toPesos(item.precio)}</Card.Text>
-            <Card.Text 
-            style={{fontSize:'.7rem'}}
-            >Stock:{item.stock + ' '+ item.unidad}</Card.Text>
-            <div className="card-actions justify-end gap-0 mt-2">
-                <Link to={`/producto/${item.id}`} className="btn btn-warning">
-                  Ver Detalles
-                </Link>
-              </div>
+            <Card.Text
+              style={{ fontSize: '.7rem' }}
+            >Stock:{item.stock + ' ' + item.unidad}</Card.Text>
+            <div className="card-actions justify-end gap-0 mt-2 ">
+              <Link to={`/producto/${item.id}`} className="btn btn-warning mx-2">
+                Ver Detalles
+              </Link>
+              <button className="btn btn-warning px-3 btnAddFast mx-2"
+                onClick={() => addToCartFast(1, item)}
+              > <BsCart /></button>
+            </div>
 
 
           </Card.Body>

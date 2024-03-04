@@ -1,0 +1,14 @@
+.details-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.itemDetailImg img{
+    object-fit: contain;
+    display: flex;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}

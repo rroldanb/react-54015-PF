@@ -1,14 +1,13 @@
 
 import { toPesos } from "../../helpers/utils";
 import { IoTrashOutline } from "react-icons/io5";
-// import ItemCantidad from "../ItemCantidad/ItemCantidad";
 import CartCant from "../CartCant/CartCant";
 
 import { useContext, useState } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
-// const CartList = ({ prod }) => {
 export default function CartList({ prod }) {
 
     const { updateCantCart, removeItem } = useContext(CartContext);
@@ -25,7 +24,7 @@ export default function CartList({ prod }) {
             });
         }
     }
-    
+
     const handleSumar = () => {
         if (cantidad < prod.stock) {
             setCantidad(prevCantidad => {
@@ -42,10 +41,10 @@ export default function CartList({ prod }) {
         <div>
             <div >
                 <div className='container cartListContainer'>
-                    <div className="cartList" style={{ borderTop:'1px solid black'}}>
-                    <Link className="ver-mas" to={`/producto/${prod.id}`}>
-                        <img className="carrito-producto-imagen" src={prod.img} alt={prod.nombre} />
-</Link>
+                    <div className="cartList" style={{ borderTop: '1px solid black' }}>
+                        <Link className="ver-mas" to={`/producto/${prod.id}`}>
+                            <img className="carrito-producto-imagen" src={prod.img} alt={prod.nombre} />
+                        </Link>
                         <div className="carrito-producto-titulo">
                             <small>Producto</small>
                             <p>{prod.nombre}</p>
@@ -61,12 +60,10 @@ export default function CartList({ prod }) {
                                 count={cantidad}
                                 handlerSuma={handleSumar}
                                 handlerResta={handleRestar}
-                                setCantidad={setCantidad} 
+                                setCantidad={setCantidad}
                                 stock={prod.stock}
                             />
 
-                            {/* // <input className="carrito-producto-cantidad-input" type="number"
-                                    //     value={prod.cantidad} /> */}
                         </div>
                         <div className="carrito-producto-precio">
                             <small>Precio</small>
@@ -76,7 +73,13 @@ export default function CartList({ prod }) {
                             <small>Subtotal</small>
                             <p>{toPesos(prod.precio * prod.cantidad)}</p>
                         </div>
-                        <button className="carrito-producto-eliminar btn btn-outline-danger mx-2 fs-3 px-0 border-0 fw-600" onClick={() => removeItem(prod.id)} ><IoTrashOutline /></button>
+
+                            <Button 
+                            className=" outline-danger mx-2 fs-3 px-0 border-0 rounded-circle fw-600" 
+                            variant="outline-danger" 
+                            onClick={() => removeItem(prod.id)} >
+                                <IoTrashOutline />
+                                </Button>
 
                     </div>
 
@@ -85,5 +88,3 @@ export default function CartList({ prod }) {
         </div>
     )
 }
-
-// export default CartList

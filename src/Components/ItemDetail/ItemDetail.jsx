@@ -1,10 +1,12 @@
+import "./ItemDetail.css"
+
 import { Row, Col } from "react-bootstrap";
-import { toPesos } from "../../helpers/utils";
+import { toCapital, toPesos } from "../../helpers/utils";
 import ItemCantidad from "../ItemCantidad/ItemCantidad";
 
 import { CartContext } from '../../Context/CartContext';
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 
 export default function ItemDetail({ producto, greeting, message }) {
 
@@ -29,27 +31,24 @@ export default function ItemDetail({ producto, greeting, message }) {
       </header>
 
       <section className="ItemDetailContainer container text-center">
-        <Row xs={1} md={2} className="g-5">
-          <Col >
+        <Row xs={1} md={2} className="g-2">
+          <Col className="align-items-center justify-content-center details-left">
             <div className="itemDetailImg" >
               <img src={producto.img} alt={producto.nombre} title={producto.nombre} style={{ borderRadius: '1rem', width: '420px' }} />
             </div>
             <div>
-
-
             {isAdded ? (
             <div className="block">
-              <p className="text-center">Producto agregado al carrito</p>
-              <div className="mx-2 mt-4">
-                <Link to="/shoppingcart" className="btn btn-secondary">
+              <div className="mx-2 mt-4" >
+                <Link to="/shoppingcart" className="btn btn-secondary" style={{fontSize:"1.5rem"}}>
                   Ir al Carrito
                 </Link>
-                <Link to="/" className="btn btn-warning">
-                  Seguir comprando
+                <Link to= {`/categoria/${producto.categoryKey}`} className="btn btn-warning" style={{fontSize:"1.5rem"}}>
+                  Volver a {toCapital(producto.categoryKey)}
                 </Link>
               </div>
             </div>
-          ) : (
+          ) : ( producto.stock > 0 && (
             <ItemCantidad
                 count={cantidad}
                 handlerSuma={handleSumar}
@@ -58,44 +57,38 @@ export default function ItemDetail({ producto, greeting, message }) {
                 textoBoton="Agregar al carrito"
                 isAdded={isAdded}
               />
-          )}
-
-
-              
+          ))}
             </div>
           </Col>
           <Col>
             <div className="descripcionDetail" id="descripcionDetail"
-              style={{
-                color: "white"
-              }}>
-              <h3 style={{ textDecoration: 'underline' }}>{producto.nombre}</h3>
-              <div className="itemDetailBase" style={{ paddingLeft: '2rem', textAlign: 'left' }}>
+              style={{color: "white"}}>
+              <div className="itemDetailBase" style={{ textAlign: 'left' }}>
 
-                {producto.unidad && <p><strong>Presentación:</strong> {producto.unidad}</p>}
-                <p><strong>Precio:</strong>  {toPesos(producto.precio)}</p>
-                <p><strong>Stock:</strong>  {producto.stock}</p>
+                {producto.unidad && <p><strong style={{color:"orange"}}>Presentación:</strong> {producto.unidad}</p>}
+                <p><strong style={{color:"orange"}}>Precio:</strong>  {toPesos(producto.precio)}</p>
+                <p><strong style={{color:"orange"}}>Stock:</strong>  {producto.stock}</p>
                 {producto.precioxkilo && (
-                  <p><strong>Precio por Kilo:</strong>  {toPesos(producto.precioxkilo)}</p>
+                  <p><strong style={{color:"orange"}}>Precio por Kilo:</strong>  {toPesos(producto.precioxkilo)}</p>
                 )}
               </div>
-              <div style={{ padding: '0', paddingLeft: '2rem', textAlign: 'left' }}>
+              <div style={{  textAlign: 'left' }}>
 
-                {producto.descripcion && <p><strong>Descripción:</strong>  {producto.descripcion}</p>}
+                {producto.descripcion && <p><strong style={{color:"orange"}}>Descripción:</strong>  {producto.descripcion}</p>}
               </div>
             </div>
             {producto.caracteristicas && (
               <div className="caracteristicasDetail" id="caracteristicasDetail"
                 style={{
-                  color: "white"
+                  color: "white", textAlign: 'left'
                 }
                 }
               >
-                <h3 style={{ textDecoration: 'underline' }}>Características:</h3>
-                <ul style={{ paddingLeft: '2rem', textAlign: 'left' }}>
+                <h3 style={{ textDecoration: 'underline', margin:"2rem 0"}}>Características:</h3>
+                <ul style={{ textAlign: 'left' , paddingLeft:"0", listStyleType:"none" }}>
                   {Object.entries(producto.caracteristicas).map(([key, value]) => (
-                    <li key={key} style={{ paddingLeft: '1rem', textAlign: 'left' }}>
-                      <strong>{key}:</strong> {value}
+                    <li key={key} style={{ fontSize:"1.5rem", textAlign: 'left'}}>
+                      <strong style={{color:"orange"}}>{key}:</strong> {value}
                     </li>
                   ))}
                 </ul>

@@ -5,7 +5,7 @@ export default function ItemList({ productos }) {
     return (
         <div>
             <section className="item-list-container">
-                <Row xs={1} md={2} lg={3} xl={4} className="g-5">
+                <Row xs={1} md={2} lg={3} xl={4} className="g-2 justify-content-center">
                     {productos.map((item) => (
                         <Item key={item.id} item={item} />
                     ))}

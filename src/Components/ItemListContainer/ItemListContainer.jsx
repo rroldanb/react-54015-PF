@@ -47,12 +47,8 @@ export default function ItemListContainer() {
     });
     
   }, [categoryId]); 
-
-
-
-
+  
   message = productos.length > 0 ? message : `Disponemos de ${productos.length} productos para la categoría ${categoryId}`
-
 
   return (
     <main >

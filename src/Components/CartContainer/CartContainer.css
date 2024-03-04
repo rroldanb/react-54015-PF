@@ -1,14 +1,13 @@
 .cart-container{
-    background-color: darkslategrey;
+    background-color: #262f3e;
     border-radius: 1rem;
 }
 
 
 .cart-header{
-    margin-top: 18rem;
     color: white;
     border-radius: 1rem;
-    background-color: darkslategrey;
+    background-color: #262f3e;
 }
 
 

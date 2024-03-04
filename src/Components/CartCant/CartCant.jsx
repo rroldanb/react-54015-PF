@@ -14,14 +14,7 @@ const CartCant = ({ count, handlerResta, handlerSuma}) => {
                 -
             </button>
             <p className="text-center px-3 txtCantidad">{count}</p>
-            {/* <input
-                type="number"
-                className="text-center px-3 txtCantidad"
-                value={count}
-                onChange={(e) => setCantidad(parseInt(e.target.value) || 0)}
-                min="1"
-                max={stock}
-            /> */}
+
             <button className="btn btn-warning btnHandleCantidad" onClick={handlerSuma}>
                 +
             </button>

@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { CartContext } from "../../Context/CartContext";
 import "./CartContainer.css"
 import { Link } from 'react-router-dom';
+import { BsEmojiFrown } from "react-icons/bs";
 
 import CartList from '../CartList/CartList';
 import { toPesos } from '../../helpers/utils';
@@ -15,12 +16,13 @@ const CartContainer = () => {
     const handleVaciar = () => {
         clearCart();
     }
-    //http://localhost:5173/producto/2DfLnC9Bs8Vl6e4j0L9y
     return (
-        <div className="container cart-container" >
+        <div className="container cart-container" 
+        style={{marginTop:"12rem"}}>
             <div className='cart-header' >
                 <div >
-                    <h2>ShoppingCart, Estos son los productos en tu carrito</h2>
+                    <h2>ShoppingCart</h2>
+                    <p>Estos son los productos en tu carrito</p>
                 </div>
             </div>
             {
@@ -36,17 +38,27 @@ const CartContainer = () => {
                 cart.length > 0 ?
                     <>
                         <div className="cart-footer">
-                        <Link to="/shoppingcart">
-                            <button onClick={handleVaciar} className='btn btn-danger'>Vaciar Carro</button>
-                                
-                            </Link>                            
+                            <Link to="/shoppingcart">
+                                <button onClick={handleVaciar} className='btn btn-danger'>Vaciar Carro</button>
+
+                            </Link>
                             <h2>Precio total: {toPesos(totalPrice())}</h2>
                             <Link to="/checkout">
                                 <button className='btn btn-warning'>Finalizar compra</button>
                             </Link>
                         </div>
+                        <Link to="/">
+                                <button className='btn btn-warning'>Volver a la tienda</button>
+                            </Link>
                     </> :
-                    <h2>El carrito está vacío :(</h2>
+                    <div>
+
+                    <img src="https://i.pinimg.com/originals/b7/2d/d0/b72dd05180817700dd6d7558ca653138.gif" alt="desierto" />
+                    <h2>El carrito está vacío <BsEmojiFrown /></h2>
+                    <Link to="/">
+                                <button className='btn btn-warning'>Volver a la tienda</button>
+                            </Link>
+                    </div>
             }
 
         </div>

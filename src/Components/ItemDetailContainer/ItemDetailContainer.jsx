@@ -41,9 +41,9 @@ export default function ItemDetailContainer() {
 
 
 
-  const greeting = "RR's Grill Store";
+  const greeting = item ? item.nombre : "RR's Grill Store";
   const message = item
-    ? "Detalles de tu producto:"
+    ? "Detalles del producto:"
     : "El producto que buscas ya no está disponible";
 
   return (

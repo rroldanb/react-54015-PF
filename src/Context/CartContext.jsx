@@ -11,14 +11,48 @@ export const CartProvider = (props) => {
         const newCart = [...cart];
         const inCart = newCart.find((producto) => producto.id === itemInCart.id);
 
-        if (inCart) {
-            inCart.cantidad += cantidad;
+        // if (inCart) {
+        //     inCart.cantidad += cantidad;
+        // } else {
+        //     newCart.push(itemInCart);
+        // }
+        // setCart([...newCart]);
+        if (!inCart) {
+            if (cantidad <= item.stock) {
+                newCart.push(itemInCart);
+                setCart(newCart);
+            }
         } else {
-            newCart.push(itemInCart);
+            if (inCart.cantidad + cantidad <= item.stock) {
+                inCart.cantidad += cantidad;
+                setCart(newCart);
+            }
+            else {console.log("No queda stock suficiente")}
         }
-        setCart([...newCart]);
         setIsAdded(true)
     };
+    
+
+    const addToCartFast = (cantidad, item) => {
+        const itemInCart = { cantidad, ...item };
+    
+        const newCart = [...cart];
+        const inCart = newCart.find((producto) => producto.id === itemInCart.id);
+    
+        if (!inCart) {
+            if (cantidad <= item.stock) {
+                newCart.push(itemInCart);
+                setCart(newCart);
+            }
+        } else {
+            if (inCart.cantidad + cantidad <= item.stock) {
+                inCart.cantidad += cantidad;
+                setCart(newCart);
+            }
+            else {console.log("No queda stock suficiente")}
+        }
+    };
+    
 
     const updateCantCart = (cantidad, item) => {
         const itemInCart = { cantidad, ...item };
@@ -56,7 +90,7 @@ export const CartProvider = (props) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, quantityInCart, totalPrice, clearCart, updateCantCart, removeItem }}>
+        <CartContext.Provider value={{ cart, addToCart, quantityInCart, totalPrice, clearCart, updateCantCart, removeItem, addToCartFast }}>
             {props.children}
         </CartContext.Provider>
     )
