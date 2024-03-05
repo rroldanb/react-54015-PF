@@ -1,0 +1,19 @@
+.logo-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-imagen {
+  border-radius: 5px;
+  /* animation: flameEffect 1s infinite alternate; */
+}
+
+/* @keyframes flameEffect {
+  0%,
+  100% {
+    border-radius: 35px 35px 22px 20px;
+  }
+  50% {
+    border-radius: 25px 15px 25px 25px;
+  }
+} */

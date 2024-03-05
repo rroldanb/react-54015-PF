@@ -9,6 +9,7 @@ import Checkout from "./Components/Checkout/Checkout"
 import CartContainer from "./Components/CartContainer/CartContainer";
 import Footer from "./Components/Footer/Footer";
 import NotFoundPage from "./Components/NotFoundPage/NotFoundPage";
+import OrderListContainer from "./Components/OrderListContainer/OrderListContainer";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/producto/:itemId" element={<ItemDetailContainer />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/shoppingcart" element={<CartContainer />} />
+          <Route path="/orders" element={<OrderListContainer />} />
           <Route path="*" element={<NotFoundPage />} /> {/* Ruta por defecto */}
         </Routes>
         <Footer />

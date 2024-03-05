@@ -66,6 +66,11 @@ export default function NavBar() {
                     {categoria.descripcion}
                   </NavLink>
                 ))}
+                <div className="ordersLink" style={{}}>
+
+                <NavLink to="/orders">Mis órdenes</NavLink>
+                </div>
+
               </Nav>
 
               <Nav className="ml-auto">

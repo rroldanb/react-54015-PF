@@ -1,8 +1,14 @@
-.navbar-light .navbar-nav .nav-link ,a{
+.navbar-light .navbar-nav .nav-link , .ordersLink,a{
     color: rgb(255, 225, 0);
     text-decoration: none;
     padding: .5rem;
     font-size: 1.5rem;
+}
+
+.ordersLink {
+    margin-left: 10rem; /* Alinea el enlace a la derecha */
+    margin-right: 0; /* Elimina el margen derecho */
+    flex-grow: 1; /* Expande el enlace al máximo */
 }
 
 a.active{
