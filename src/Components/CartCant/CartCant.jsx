@@ -1,4 +1,5 @@
 
+import { Button } from "react-bootstrap";
 import "./CartCant.css"
 
 const CartCant = ({ count, handlerResta, handlerSuma}) => {
@@ -10,14 +11,14 @@ const CartCant = ({ count, handlerResta, handlerSuma}) => {
         <div className="m-2 flex justify-center itemCantidad"
             style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}
         >
-            <button className="btn btn-warning btnHandleCantidad" onClick={handlerResta}>
+            <Button variant="outline-warning"  className=" btnHandleCantidad" onClick={handlerResta}>
                 -
-            </button>
+            </Button>
             <p className="text-center px-3 txtCantidad">{count}</p>
 
-            <button className="btn btn-warning btnHandleCantidad" onClick={handlerSuma}>
+            <Button variant="outline-warning"  className=" btnHandleCantidad" onClick={handlerSuma}>
                 +
-            </button>
+            </Button>
         </div>
 
 

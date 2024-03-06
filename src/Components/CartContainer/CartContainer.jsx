@@ -6,6 +6,7 @@ import { BsEmojiFrown } from "react-icons/bs";
 
 import CartList from '../CartList/CartList';
 import { toPesos } from '../../helpers/utils';
+import { Button } from 'react-bootstrap';
 
 const CartContainer = () => {
 
@@ -37,19 +38,19 @@ const CartContainer = () => {
             {
                 cart.length > 0 ?
                     <>
+                            <h2>Precio total: {toPesos(totalPrice())}</h2>
                         <div className="cart-footer">
+                        <Link to="/">
+                                <Button variant="outline-warning" className='botonsCarro'>Volver a la tienda</Button>
+                            </Link>
                             <Link to="/shoppingcart">
-                                <button onClick={handleVaciar} className='btn btn-danger'>Vaciar Carro</button>
+                                <Button onClick={handleVaciar}  variant="outline-danger" className='botonsCarro' >Vaciar Carro</Button>
 
                             </Link>
-                            <h2>Precio total: {toPesos(totalPrice())}</h2>
                             <Link to="/checkout">
-                                <button className='btn btn-warning'>Finalizar compra</button>
+                                <Button variant="outline-warning" className='botonsCarro'>Finalizar compra</Button>
                             </Link>
                         </div>
-                        <Link to="/">
-                                <button className='btn btn-warning'>Volver a la tienda</button>
-                            </Link>
                     </> :
                     <div>
 

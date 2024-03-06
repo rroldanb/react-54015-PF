@@ -51,10 +51,12 @@ const Checkout = () => {
     }
 
     const handlePhoneChange = (event) => {
-        const value = event.target.value;
+        const value = event.target.value; 
         const sudamerica = ['AR', 'BO', 'CL', 'CO', 'EC', 'PE', 'UY', 'VE'];
         const isValid = sudamerica.some((country) => isValidPhoneNumber(value, country));
         setValidPhoneNumber(isValid);
+        console.log(value, isValid)
+
     };
 
     const isDisabled = cart.length === 0
@@ -69,7 +71,7 @@ const Checkout = () => {
 
     if (pedidoId) {
         return (
-            <div className="container" style={{ margin: "20rem 0" }}>
+            <div className="container" style={{ marginTop: "20rem" }}>
                 <h2 className="main-title">Muchas gracias por tu compra</h2>
                 <p>Tu número de pedido es: </p>
                 <h2>{pedidoId}</h2>
@@ -113,21 +115,18 @@ const Checkout = () => {
                     {!validPhoneNumber && <span className="formErrorMsg">Número de teléfono no válido</span>}
                 </div>
 
-
-
-                <button className="submit btn btn-warning" type="submit" disabled={isDisabled}>Generar Pedido</button>
-
-            </form>
             <div
                 style={{ margin: "1rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
                 <Link to="/">
                     <Button variant="outline-warning">Volver a la tienda</Button>
                 </Link>
+                <button className="submit btn btn-warning" type="submit" disabled={isDisabled}>Generar Pedido</button>
                 <Link to="/shoppingCart">
                     <Button variant="outline-warning">Volver al Carrito</Button>
                 </Link>
             </div>
+            </form>
             <div className='cart-header' >
                 <div >
                     <p>Estos son los productos en tu carrito</p>

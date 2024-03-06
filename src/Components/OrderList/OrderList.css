@@ -1,0 +1,40 @@
+.listaProductosOrdenados {
+  color: whitesmoke;
+  background-color: slategrey;
+  display: flex;
+  max-width: 50rem;
+  align-items: center;
+  /* border-top: 1px solid white; */
+  /* border-bottom: 1px solid white; */
+  border: 1px solid white;
+
+}
+
+.listaProductosOrdenados span {
+  padding: 3px 0;
+  border-left: 1px solid white;
+
+}
+
+.listaProductosOrdenados > span:nth-child(1) {
+  flex-basis: 5rem;
+  border-left: none;
+
+}
+
+.listaProductosOrdenados > span:nth-child(2) {
+  flex-basis: 6rem;
+}
+
+.listaProductosOrdenados > span:nth-child(3) {
+  flex-basis: 25rem;
+}
+
+.listaProductosOrdenados > span:nth-child(4) {
+  flex-basis: 10rem;
+}
+.listaProductosOrdenados > span:nth-child(5) {
+  flex-basis: 10rem;
+
+
+}

@@ -11,12 +11,6 @@ export const CartProvider = (props) => {
         const newCart = [...cart];
         const inCart = newCart.find((producto) => producto.id === itemInCart.id);
 
-        // if (inCart) {
-        //     inCart.cantidad += cantidad;
-        // } else {
-        //     newCart.push(itemInCart);
-        // }
-        // setCart([...newCart]);
         if (!inCart) {
             if (cantidad <= item.stock) {
                 newCart.push(itemInCart);
@@ -77,7 +71,6 @@ export const CartProvider = (props) => {
     }
 
     const removeItem = (prodId) => {
-        // const updatedCart = [...cart.slice(0, index), ...cart.slice(index + 1)];
         const index =cart.findIndex(producto => producto.id === prodId)
         const updatedCart = [...cart];
         updatedCart.splice(index, 1);
@@ -90,7 +83,7 @@ export const CartProvider = (props) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, quantityInCart, totalPrice, clearCart, updateCantCart, removeItem, addToCartFast }}>
+        <CartContext.Provider value={{ cart, addToCart, quantityInCart, totalPrice, clearCart, updateCantCart, removeItem, addToCartFast, setCart }}>
             {props.children}
         </CartContext.Provider>
     )

@@ -31,7 +31,9 @@ export default function ItemDetail({ producto, greeting, message }) {
       </header>
 
       <section className="ItemDetailContainer container text-center">
-        <Row xs={1} md={2} className="g-2">
+        {/* <Row xs={1} md={2} className="g-2"> */}
+        <Row xs={1} md={1} lg={2} className="g-2 justify-content-center">
+
           <Col className="align-items-center justify-content-center details-left">
             <div className="itemDetailImg" >
               <img src={producto.img} alt={producto.nombre} title={producto.nombre} style={{ borderRadius: '1rem', width: '420px' }} />

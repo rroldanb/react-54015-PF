@@ -39,4 +39,9 @@
 .cart-footer{
     display: flex;
     justify-content: space-around;
+    font-size: 2rem;
+}
+
+.botonsCarro{
+  font-size: 1.3rem;
 }

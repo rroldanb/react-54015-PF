@@ -1,5 +1,5 @@
 
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav} from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 
 import "./NavBar.css";
@@ -26,10 +26,10 @@ export default function NavBar() {
     const orderedCategoriesRef = query(categoriesRef, orderBy("priority"));
 
 
-      getDocs(orderedCategoriesRef).then((snapshot) => {
-        const categoriesMap = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
+    getDocs(orderedCategoriesRef).then((snapshot) => {
+      const categoriesMap = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
 
       setCategories(categoriesMap);
       setLoading(false);
@@ -40,7 +40,7 @@ export default function NavBar() {
 
   }, [db]);
 
-
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <>
@@ -51,34 +51,49 @@ export default function NavBar() {
         </>
       ) : (
         <>
-          <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-            <Container>
 
+          <Navbar
+
+            bg="dark"
+            data-bs-theme="dark"
+            fixed="top"
+            expand="lg"
+            className="bg-body-primary"
+            variant="dark"
+            collapseOnSelect
+            expanded={expanded}
+          >
+
+            <Container>
               <Navbar.Brand>
-                <Link to="/">
+                <Link to="/" onClick={() => setExpanded(false)} >
                   <Logo width={100} height={100} />
                 </Link>
               </Navbar.Brand>
+              <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} aria-controls="basic-navbar" />
 
-              <Nav className="me-auto">
-                {categories.map(categoria => (
-                  <NavLink key={categoria.id} to={`/categoria/${categoria.key}`}>
-                    {categoria.descripcion}
-                  </NavLink>
-                ))}
-                <div className="ordersLink" style={{}}>
+              <Navbar.Collapse id="basic-navbar" >
+                <Nav className="me-auto">
+                  {categories.map(categoria => (
+                    <NavLink
+                      key={categoria.id}
+                      to={`/categoria/${categoria.key}`}
+                      onClick={() => setExpanded(false)}
+                    >
+                      {categoria.descripcion}
+                    </NavLink>
 
-                <NavLink to="/orders">Mis órdenes</NavLink>
+                  ))}
+
+                </Nav>
+                <div>
+
+              <NavLink to="/orders" onClick={() => setExpanded(false)} >Mis órdenes</NavLink>
                 </div>
-
-              </Nav>
-
-              <Nav className="ml-auto">
-                <NavLink to="/shoppingcart">
-                  <CartWidget />
-                </NavLink>
-              </Nav>
-
+              </Navbar.Collapse>
+              <NavLink to="/shoppingcart" onClick={() => setExpanded(false)} >
+                <CartWidget />
+              </NavLink>
             </Container>
           </Navbar>
 

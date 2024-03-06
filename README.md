@@ -2,7 +2,7 @@
  Curso CoderHouse ReactJS, Comisión 54015
 
 ## Descripción del Proyecto
-RR Grill Store es una aplicación web desarrollada en React y respaldada por Firebase para la gestión de la información. La aplicación simula una tienda de e-commerce especializada en productos relacionados con la parrilla.
+RR Grill Store es una aplicación web desarrollada en React y se apoya en Firebase para la gestión de la información. La aplicación simula una tienda de e-commerce especializada en productos relacionados con la parrilla.
 
 ### Enfoque de Diseño y Experiencia del Usuario
 Además de una paleta de colores simples, RR Grill Store ofrece una navegación intuitiva que permite a los usuarios agregar productos al carrito directamente desde la lista de productos o desde la vista detallada. El diseño se centra en proporcionar una experiencia de usuario fluida y fácil de usar.
@@ -40,6 +40,10 @@ Aunque no se han implementado mayores sistemas de seguridad para este proyecto, 
 7. **Finalización de la Compra:**
    - En la sección de checkout, se muestra el contenido del carrito con las mismas características que en la vista del carrito. Además, se presenta un formulario donde el usuario puede ingresar sus datos para completar la compra.
    - Una vez que todos los campos del formulario están validados, el usuario puede finalizar la compra. Después de esto, se almacena el número de pedido y se proporciona al usuario como confirmación de su compra.
+
+8. **Búsqueda de Órdenes:**
+   - En la sección mis órdenes, se permite al usuario ingresar un id de orden para buscarlo en la base de datos.
+   - Una vez que se encuentra la orden se lista su contenido, fecha y hora de compra y su valor total ofreciendo la posibilida de repetir la compra, agregando directamemnte los productos de la compra anterior al carrito.
 
 
 

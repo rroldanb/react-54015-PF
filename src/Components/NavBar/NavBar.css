@@ -1,14 +1,12 @@
-.navbar-light .navbar-nav .nav-link , .ordersLink,a{
+.navbar-light .navbar-nav .nav-link , .ordersLink,a, .navbar-toggler, span.navbar-dark, .navbar-dark{
     color: rgb(255, 225, 0);
     text-decoration: none;
     padding: .5rem;
     font-size: 1.5rem;
 }
 
-.ordersLink {
-    margin-left: 10rem; /* Alinea el enlace a la derecha */
-    margin-right: 0; /* Elimina el margen derecho */
-    flex-grow: 1; /* Expande el enlace al máximo */
+.hidden{
+    display: none;
 }
 
 a.active{
@@ -16,8 +14,27 @@ a.active{
 
 }
 
-.navbar-light:hover .navbar-nav:hover .nav-link:hover , a:hover, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show .nav-link{
-    color: rgb(109, 109, 64);
+.navbar-toggler.collapsed , .navbar-dark , button.navbar-toggler,
+.navbar-toggler.collapsed:hover, .navbar-toggler.collapsed:active,
+.navbar-toggler:hover, span.navbar-dark:hover, .navbar-dark,
+.navbar-dark .navbar-toggler, .navbar-dark .navbar-toggler :hover
+{
+    color: yellow;
+    border-color: yellow;
+    border-width: 2px;
+}
+
+.navbar-dark .navbar-toggler :active{
+    border-color: orange;
+    border-width: 2px;
+
+}
+.navbar-light:hover .navbar-nav:hover .nav-link:hover
+ , a:hover, .navbar-light .navbar-nav .nav-link.active, 
+ .navbar-light .navbar-nav .show .nav-link
+
+ {
+    color: rgb(178, 118, 34);
 }
 
 .navbar{
