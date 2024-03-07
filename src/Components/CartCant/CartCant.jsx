@@ -8,8 +8,8 @@ const CartCant = ({ count, handlerResta, handlerSuma}) => {
     return (
 
 
-        <div className="m-2 flex justify-center itemCantidad"
-            style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}
+        <div className="m-2 flex justify-center itemCantidad" st
+            style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
         >
             <Button variant="outline-warning"  className=" btnHandleCantidad" onClick={handlerResta}>
                 -

@@ -1,6 +1,7 @@
 .details-left{
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 .itemDetailImg img{
@@ -12,3 +13,14 @@
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }
+
+.btn-secondary{
+    border: none;
+    margin-right: 2px;
+}
+
+.descripcionDetail h2, .descripcionDetail p, .caracteristicasDetail h3, .catacteristicasDetails{
+font-size: 1.2rem;
+margin-bottom: 0;
+}
+

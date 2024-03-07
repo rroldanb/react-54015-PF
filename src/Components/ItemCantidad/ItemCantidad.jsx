@@ -19,7 +19,7 @@ const ItemCantidad = ({ count, handlerResta, handlerSuma, accionBoton , textoBot
         </button>
       <div>
         <button className="btn btn-warning px-3 btnAccion"
-          style={{ fontSize: '1.5rem'}}
+          style={{ fontSize: '1rem', height:"2rem"}}
           onClick={accionBoton}
         >{textoBoton}</button>
       </div>

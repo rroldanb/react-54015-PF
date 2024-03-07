@@ -54,6 +54,9 @@ export default function NavBar() {
 
           <Navbar
 
+
+id="navbar"
+
             bg="dark"
             data-bs-theme="dark"
             fixed="top"
@@ -64,16 +67,20 @@ export default function NavBar() {
             expanded={expanded}
           >
 
-            <Container>
-              <Navbar.Brand>
+            <Container className="navBarCont">
+              <Navbar.Brand
+              id="logo"
+              >
                 <Link to="/" onClick={() => setExpanded(false)} >
-                  <Logo width={100} height={100} />
+                  <Logo width={70} height={70} />
                 </Link>
               </Navbar.Brand>
               <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} aria-controls="basic-navbar" />
 
               <Navbar.Collapse id="basic-navbar" >
-                <Nav className="me-auto">
+                <Nav
+                id="navbar-right"
+                className="me-auto">
                   {categories.map(categoria => (
                     <NavLink
                       key={categoria.id}
@@ -88,10 +95,14 @@ export default function NavBar() {
                 </Nav>
                 <div>
 
-              <NavLink to="/orders" onClick={() => setExpanded(false)} >Mis órdenes</NavLink>
+              <NavLink 
+               id="navbar-right-2"
+              to="/orders" onClick={() => setExpanded(false)} >Mis órdenes</NavLink>
                 </div>
               </Navbar.Collapse>
-              <NavLink to="/shoppingcart" onClick={() => setExpanded(false)} >
+              <NavLink 
+               id="navbar-right-3"
+              to="/shoppingcart" onClick={() => setExpanded(false)} >
                 <CartWidget />
               </NavLink>
             </Container>

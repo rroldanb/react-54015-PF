@@ -6,3 +6,8 @@
 .btnAddFast:hover{
     background-color: darkorange;
 }
+
+.cardsCol{
+    display: flex;
+    justify-content: center;
+}

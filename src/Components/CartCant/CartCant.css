@@ -1,14 +1,19 @@
-.txtCantidad{
-    font-size: 2rem;
+.itemCantidad {
+    width: 300px;
+    padding: 0;
+    justify-content: center;
+}
+
+.txtCantidad {
+    font-size: 1.5rem;
     /* background-color: rgb(109, 109, 109); */
-        color: antiquewhite;
+    color: antiquewhite;
 
 }
 
-.btnHandleCantidad{
-font-size: 2rem;
-padding-top: 0;
-padding-bottom: 0;
-height: 3rem;
+.btnHandleCantidad {
+    font-size: 1.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 2rem;
 }
-

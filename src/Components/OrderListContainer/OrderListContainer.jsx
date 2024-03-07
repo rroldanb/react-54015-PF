@@ -15,7 +15,7 @@ export default function OrderListContainer() {
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState(null);
     const [busquedaVacia, setBusquedaVacia] = useState(false)
-const {setCart} = useContext(CartContext)
+    const { setCart } = useContext(CartContext)
 
     useEffect(() => {
         // setOrderId("awuRPdnUhGYBtqC0Pi61")
@@ -45,7 +45,7 @@ const {setCart} = useContext(CartContext)
         setcodigoBuscar(event.target.value);
     };
 
-    const handleRepetirCompra = (productos)=>{
+    const handleRepetirCompra = (productos) => {
         setCart(productos)
     }
 
@@ -69,13 +69,16 @@ const {setCart} = useContext(CartContext)
 
     return (
         <div>
-            <h2 style={{ marginTop: "12rem" }}>Mis órdenes</h2>
-            <p>Ingresa el código de tu pedido para ver los detalles</p>
-            <p style={{color:"slategray"}}>Ejemplo: 8ELz7zULvWuhjiYY15ON</p>
-            <div className="container" style={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                <input id="orderIdInput" type="text" onChange={handleInputChange} style={{ fontSize: "1.4rem", margin: "0 8px", width: "18rem" }} />
-                <button className="btn btn-warning" onClick={handleSearchButtonClick}>Buscar</button>
+            <div className="container ordersHeaders">
+                <h2 style={{ marginTop: "12rem" }}>Mis órdenes</h2>
+                <p>Ingresa el código de tu pedido para ver los detalles</p>
+                <p style={{ color: "slategray " }}>Ejemplo: 8ELz7zULvWuhjiYY15ON</p>
+                <div className="container flex" style={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+                    <input id="orderIdInput" type="text" onChange={handleInputChange} />
+                    <button className="btn btn-warning" onClick={handleSearchButtonClick}>Buscar</button>
+                </div>
             </div>
+
             {(loading) && <div style={{ height: "10rem" }}> <img src="/leon.gif" alt="Buscando" /></div>}
             {order && (
                 <div className="orderDetailsContainer container">
@@ -90,8 +93,8 @@ const {setCart} = useContext(CartContext)
                             <p> <strong>Hora:</strong>  {order.hora}</p>
                         </div>
                         <div className="listHeaders container">
-                            <span>Imagen</span>
-                            <span>Cantidad</span>
+                            <span>Img</span>
+                            <span>Cant</span>
                             <span>Nombre</span>
                             <span>P.Unitario</span>
                             <span>P.Total</span>
@@ -105,8 +108,8 @@ const {setCart} = useContext(CartContext)
                     </div>
                     <div className="orderDatailsFooter container">
                         <Link to="/shoppingCart">
-                    <Button variant="outline-warning" onClick={()=>handleRepetirCompra(order.productos)}>Repetir la compra</Button>
-                </Link>
+                            <Button variant="outline-warning" onClick={() => handleRepetirCompra(order.productos)}>Repetir la compra</Button>
+                        </Link>
                         <p>Total:</p>
                         <h2>{toPesos(order.total)}</h2>
                     </div>

@@ -1,0 +1,32 @@
+
+.carritoProductosHeader{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+.carritoProductoDetalles p{
+    font-size: 1rem;
+}
+.carritoProductoDetalles small{
+color: black;
+
+}
+
+.carritoProductoDetalles {
+    display: flex; 
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* height: 100%;  */
+    /* align-items: center;
+    justify-content: center; */ 
+}
+
+/* .carritoProductoDetalles > :first-child {
+    align-self: flex-start;
+    justify-self: center;
+}
+
+.carritoProductoDetalles > :nth-child(2) {
+    align-self: center; 
+} */

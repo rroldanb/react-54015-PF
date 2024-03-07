@@ -10,7 +10,7 @@ export default function Item({ item }) {
   const { addToCartFast } = useContext(CartContext);
 
   return (
-    <div>
+    <div >
       <Col>
         <Card
           style={{ width: "18rem", borderRadius: "1rem" }}

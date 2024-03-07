@@ -15,6 +15,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { toCapital } from "../../helpers/utils";
 
 export default function ItemListContainer() {
   const { categoryId } = useParams();
@@ -22,7 +23,7 @@ export default function ItemListContainer() {
   const [loading, setLoading] = useState(true);
 
   const greeting = "Bienvenidos a RR's Grill Store"
-  let message = categoryId ? `Categoría seleccionada: ${categoryId}` : 'Todo Para tu Parrilla'
+  let message = categoryId ? `Categoría seleccionada: ${toCapital(categoryId)}` : 'Todo Para tu Parrilla'
 
   useEffect(() => {
     setLoading(true);

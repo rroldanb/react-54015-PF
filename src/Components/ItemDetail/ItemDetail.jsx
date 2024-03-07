@@ -34,18 +34,18 @@ export default function ItemDetail({ producto, greeting, message }) {
         {/* <Row xs={1} md={2} className="g-2"> */}
         <Row xs={1} md={1} lg={2} className="g-2 justify-content-center">
 
-          <Col className="align-items-center justify-content-center details-left">
+          <Col className="align-items-center  details-left">
             <div className="itemDetailImg" >
-              <img src={producto.img} alt={producto.nombre} title={producto.nombre} style={{ borderRadius: '1rem', width: '420px' }} />
+              <img src={producto.img} alt={producto.nombre} title={producto.nombre} style={{ borderRadius: '1rem', width: '280px' }} />
             </div>
             <div>
             {isAdded ? (
             <div className="block">
-              <div className="mx-2 mt-4" >
-                <Link to="/shoppingcart" className="btn btn-secondary" style={{fontSize:"1.5rem"}}>
+              <div className="mx-2 mt-2" >
+                <Link to="/shoppingcart" className="btn btn-secondary" style={{fontSize:"1rem", color:"black", backgroundColor:"orange"}}>
                   Ir al Carrito
                 </Link>
-                <Link to= {`/categoria/${producto.categoryKey}`} className="btn btn-warning" style={{fontSize:"1.5rem"}}>
+                <Link to= {`/categoria/${producto.categoryKey}`} className="btn btn-warning" style={{fontSize:"1rem"}}>
                   Volver a {toCapital(producto.categoryKey)}
                 </Link>
               </div>
@@ -64,7 +64,7 @@ export default function ItemDetail({ producto, greeting, message }) {
           </Col>
           <Col>
             <div className="descripcionDetail" id="descripcionDetail"
-              style={{color: "white"}}>
+              style={{}}>
               <div className="itemDetailBase" style={{ textAlign: 'left' }}>
 
                 {producto.unidad && <p><strong style={{color:"orange"}}>Presentación:</strong> {producto.unidad}</p>}
@@ -89,7 +89,7 @@ export default function ItemDetail({ producto, greeting, message }) {
                 <h3 style={{ textDecoration: 'underline', margin:"2rem 0"}}>Características:</h3>
                 <ul style={{ textAlign: 'left' , paddingLeft:"0", listStyleType:"none" }}>
                   {Object.entries(producto.caracteristicas).map(([key, value]) => (
-                    <li key={key} style={{ fontSize:"1.5rem", textAlign: 'left'}}>
+                    <li key={key} className="catacteristicasDetails" style={{ textAlign: 'left'}}>
                       <strong style={{color:"orange"}}>{key}:</strong> {value}
                     </li>
                   ))}

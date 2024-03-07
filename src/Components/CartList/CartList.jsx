@@ -2,7 +2,7 @@
 import { toPesos } from "../../helpers/utils";
 import { IoTrashOutline } from "react-icons/io5";
 import CartCant from "../CartCant/CartCant";
-
+import "./CartList.css"
 import { useContext, useState } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
@@ -40,21 +40,26 @@ export default function CartList({ prod }) {
     return (
         <div>
             <div >
-                <div className='container cartListContainer'>
+                <div className='container cartListContainer overflow-auto'>
+                <div className="carritoProductosHeader">
+                <small>Producto</small>
+                <small>Stock</small>
+                <small>Cantidad</small>
+                <small>Precio</small>
+                <small>Subtotal</small>
+
+</div>
                     <div className="cartList" style={{ borderTop: '1px solid black' }}>
                         <Link className="ver-mas" to={`/producto/${prod.id}`}>
-                            <img className="carrito-producto-imagen" src={prod.img} alt={prod.nombre} />
+                            <img className="carrito-producto-imagen carritoProductoDetalles" src={prod.img} alt={prod.nombre} />
                         </Link>
-                        <div className="carrito-producto-titulo">
-                            <small>Producto</small>
-                            <p>{prod.nombre}</p>
+                        <div className=" carritoProductoDetalles">
+                            <p className="carrito-producto-titulo">{prod.nombre}</p>
                         </div>
-                        <div className="carrito-producto-stock">
-                            <small>Stock</small>
-                            <p  >{prod.stock} {prod.unidad}</p>
+                        <div className=" carritoProductoDetalles">
+                            <p className="carrito-producto-stock" >{prod.stock} {prod.unidad}</p>
                         </div>
-                        <div className="carrito-producto-cantidad">
-                            <small>Cantidad</small>
+                        <div className="carrito-producto-cantidad carritoProductoDetalles">
 
                             <CartCant
                                 count={cantidad}
@@ -65,12 +70,10 @@ export default function CartList({ prod }) {
                             />
 
                         </div>
-                        <div className="carrito-producto-precio">
-                            <small>Precio</small>
+                        <div className="carrito-producto-precio carritoProductoDetalles">
                             <p> {toPesos(prod.precio)}</p>
                         </div>
-                        <div className="carrito-producto-subtotal">
-                            <small>Subtotal</small>
+                        <div className="carrito-producto-subtotal carritoProductoDetalles">
                             <p>{toPesos(prod.precio * prod.cantidad)}</p>
                         </div>
 
