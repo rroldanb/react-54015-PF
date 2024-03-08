@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { BsEmojiFrown } from "react-icons/bs";
 
 import CartList from '../CartList/CartList';
+import CartListHeader from '../CartListHeader/CartListHeader';
 import { toPesos } from '../../helpers/utils';
 import { Button } from 'react-bootstrap';
 
@@ -26,6 +27,7 @@ const CartContainer = () => {
                     <p>Estos son los productos en tu carrito</p>
                 </div>
             </div>
+            <CartListHeader/>
             {
                 cart.map((prod) => (
                     <div key={prod.id}>

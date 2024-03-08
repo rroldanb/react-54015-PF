@@ -10,6 +10,8 @@ import { Button } from "react-bootstrap";
 
 export default function CartList({ prod }) {
 
+
+
     const { updateCantCart, removeItem } = useContext(CartContext);
 
     const [cantidad, setCantidad] = useState(prod.cantidad);
@@ -41,48 +43,64 @@ export default function CartList({ prod }) {
         <div>
             <div >
                 <div className='container cartListContainer overflow-auto'>
-                <div className="carritoProductosHeader">
-                <small>Producto</small>
-                <small>Stock</small>
-                <small>Cantidad</small>
-                <small>Precio</small>
-                <small>Subtotal</small>
 
-</div>
                     <div className="cartList" style={{ borderTop: '1px solid black' }}>
-                        <Link className="ver-mas" to={`/producto/${prod.id}`}>
-                            <img className="carrito-producto-imagen carritoProductoDetalles" src={prod.img} alt={prod.nombre} />
-                        </Link>
-                        <div className=" carritoProductoDetalles">
-                            <p className="carrito-producto-titulo">{prod.nombre}</p>
-                        </div>
-                        <div className=" carritoProductoDetalles">
-                            <p className="carrito-producto-stock" >{prod.stock} {prod.unidad}</p>
-                        </div>
-                        <div className="carrito-producto-cantidad carritoProductoDetalles">
+                        <span className="spanDetail spanImagen">
 
-                            <CartCant
-                                count={cantidad}
-                                handlerSuma={handleSumar}
-                                handlerResta={handleRestar}
-                                setCantidad={setCantidad}
-                                stock={prod.stock}
-                            />
+                            <Link className="ver-mas" to={`/producto/${prod.id}`}>
+                                <img className="carrito-producto-imagen carritoProductoDetalles" src={prod.img} alt={prod.nombre} />
+                            </Link>
+                        </span>
+                        <span className="spanDetail spanNombre">
+                            <div className=" carritoProductoDetalles">
+                                <p className="carrito-producto-titulo">{prod.nombre}</p>
+                            </div>
 
-                        </div>
-                        <div className="carrito-producto-precio carritoProductoDetalles">
-                            <p> {toPesos(prod.precio)}</p>
-                        </div>
-                        <div className="carrito-producto-subtotal carritoProductoDetalles">
-                            <p>{toPesos(prod.precio * prod.cantidad)}</p>
-                        </div>
+                        </span>
+                        <span className="spanDetail spanCant">
 
-                            <Button 
-                            className=" outline-danger mx-2 fs-3 px-0 border-0 rounded-circle fw-600" 
-                            variant="outline-danger" 
-                            onClick={() => removeItem(prod.id)} >
-                                <IoTrashOutline />
+                            <div className="carrito-producto-cantidad carritoProductoDetalles">
+
+                                <CartCant
+                                    count={cantidad}
+                                    handlerSuma={handleSumar}
+                                    handlerResta={handleRestar}
+                                    setCantidad={setCantidad}
+                                    stock={prod.stock}
+                                />
+
+                            </div>
+                        </span>
+                        <span className="spanDetail spanStock">
+
+                            <div className=" carritoProductoDetalles">
+                                <p className="carrito-producto-stock" >{prod.stock} {prod.unidad}</p>
+                            </div>
+                        </span>
+                        <span className="spanDetail spanUnitario">
+
+                            <div className="carrito-producto-precio carritoProductoDetalles">
+                                <p> {toPesos(prod.precio)}</p>
+                            </div>
+                        </span>
+                        <span className="spanDetail spanSubTotal">
+
+                            <div className="carrito-producto-subtotal carritoProductoDetalles">
+                                <p>{toPesos(prod.precio * prod.cantidad)}</p>
+                            </div>
+                        </span>
+                        <span className="spanDetail spanEliminar">
+
+                            <div className="carritoProductoDetalles">
+
+                                <Button
+                                    className=" outline-danger mx-2 fs-3 px-0 border-0 rounded-circle fw-600"
+                                    variant="outline-danger"
+                                    onClick={() => removeItem(prod.id)} >
+                                    <IoTrashOutline />
                                 </Button>
+                            </div>
+                        </span>
 
                     </div>
 

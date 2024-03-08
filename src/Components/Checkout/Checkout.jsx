@@ -10,14 +10,15 @@ import { Link } from "react-router-dom";
 import CartList from "../CartList/CartList";
 import { toPesos } from "../../helpers/utils";
 import Button from 'react-bootstrap/Button';
+import CartListHeader from "../CartListHeader/CartListHeader";
 
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { isValidPhoneNumber } from 'libphonenumber-js';
+import { isPossiblePhoneNumber } from 'react-phone-number-input';
+
 
 const Checkout = () => {
 
-    const [validPhoneNumber, setValidPhoneNumber] = useState(true);
     const [pedidoId, setPedidoId] = useState("");
     const { cart, totalPrice, clearCart } = useContext(CartContext);
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
@@ -26,11 +27,6 @@ const Checkout = () => {
         const fechaActual = new Date();
         const fechaFormateada = format(fechaActual, 'dd/MM/yyyy', { locale: es });
         const horaFormateada = format(fechaActual, 'HH:mm:ss');
-
-        if (!validPhoneNumber) {
-            console.log('Número de teléfono no válido');
-            return;
-        }
 
         const pedido = {
             cliente: data,
@@ -50,23 +46,15 @@ const Checkout = () => {
 
     }
 
-    const handlePhoneChange = (event) => {
-        const value = event.target.value; 
-        const sudamerica = ['AR', 'BO', 'CL', 'CO', 'EC', 'PE', 'UY', 'VE'];
-        const isValid = sudamerica.some((country) => isValidPhoneNumber(value, country));
-        setValidPhoneNumber(isValid);
-        console.log(value, isValid)
-
-    };
-
-    const isDisabled = cart.length === 0
-        || totalPrice() === 0
-        || Object.keys(errors).length > 0
-        || watch('email') !== watch('confirmarEmail')
-        || !watch('nombre')
-        || !watch('email')
-        || !watch('telefono')
-        || !validPhoneNumber;
+    const onSubmit = handleSubmit((data) => {
+        const dataValida = {
+            nombre: data.nombre,
+            email: data.email,
+            telefono: data.telefono
+        }
+        cart.length > 0 ?
+            comprar(dataValida) : alert("Tu carrito está vacío")
+    })
 
 
     if (pedidoId) {
@@ -82,57 +70,109 @@ const Checkout = () => {
         )
     }
 
+
     return (
         <div className="container" style={{ marginTop: "12rem" }}>
             <h2 className="main-title">Finalizar compra</h2>
-            <div style={{ margin: "1rem", display: "flex", alignItems: "center", justifyContent: "center", gap: "2rem" }}>
-                <p>Total a Pagar:</p>
-                <h2>{toPesos(totalPrice())}</h2>
-            </div>
+
             <p>Ingresa tus datos para poder generar tu pedido</p>
-            <form className="formulario" onSubmit={handleSubmit(comprar)}>
+            <form className="formulario" onSubmit={onSubmit}>
 
-                <div className="formFields">
-                    <input type="text" placeholder="Nombre" {...register("nombre", { required: true })} />
-                    {errors.nombre && <span className="formErrorMsg">Este campo es obligatorio</span>}
+                <div className="formFields nombreInput">
+                    <input type="text" placeholder="Nombre"
+                        {...register("nombre", {
+                            required: {
+                                value: true,
+                                message: "Este campo es obligatorio"
+                            },
+                            minLength: {
+                                value: 2,
+                                message: "El largo mínimo son 2 caracteres"
+                            },
+                            maxLength: {
+                                value: 50,
+                                message: "El largo máximo son 50 caracteres"
+                            },
+                        })} />
+                    {errors.nombre && <span className="formErrorMsg">{errors.nombre.message}</span>}
                 </div>
-                <div className="formFields">
-                    <input type="email" placeholder="Email" {...register("email", { required: true })} />
-                    {errors.email && <span className="formErrorMsg">Este campo es obligatorio</span>}
+                <div className="formFields emailInput">
+                    <input type="email" placeholder="Email"
+                        {...register("email", {
+                            required: {
+                                value: true,
+                                message: "Este campo es obligatorio"
+                            },
+                            pattern: {
+                                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                message: "Correo no válido",
+                            },
+                        })} />
+                    {errors.email && <span className="formErrorMsg">{errors.email.message}</span>}
                 </div>
-                <div className="formFields">
-                    <input type="email" placeholder="Confirmar Email" {...register("confirmarEmail", { required: true })} />
-                    {errors.confirmarEmail && <span className="formErrorMsg">Este campo es obligatorio</span>}
-                    {watch('email') !== watch('confirmarEmail') && <span className="formErrorMsg">Los correos electrónicos no coinciden</span>}
+                <div className="formFields emailInputComp">
+                    <input type="email" placeholder="Confirme su Email"
+                        {...register("emailConf", {
+                            required: {
+                                value: true,
+                                message: "Este campo es obligatorio"
+                            },
+                            pattern: {
+                                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                message: "Correo no válido",
+                            },
+                            validate: (value) =>
+                                value === watch('email') || "Los correos no coinciden",
+                        })} />
+                    {errors.emailConf && <span className="formErrorMsg">{errors.emailConf.message}</span>}
                 </div>
-                <div className="formFields">
-                    <input
-                        type="tel"
-                        placeholder="Teléfono con código de área"
-                        {...register("telefono", { required: true })}
-                        onChange={handlePhoneChange}
-                    />
-                    {!validPhoneNumber && <span className="formErrorMsg">Número de teléfono no válido</span>}
-                </div>
+                <div className="formFields phoneInput">
+                    <input type="tel" placeholder="Teléfono"
+                        {...register("telefono", {
+                            required: {
+                                value: true,
+                                message: "Este campo es obligatorio"
+                            },
+                            minLength: {
+                                value: 5,
+                                message: "El largo mínimo son 5 caracteres"
+                            },
+                            maxLength: {
+                                value: 15,
+                                message: "El largo máximo son 15 caracteres"
+                            },
+                            validate: (value) =>
 
-            <div
-                style={{ margin: "1rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-
-                <Link to="/">
-                    <Button variant="outline-warning">Volver a la tienda</Button>
-                </Link>
-                <button className="submit btn btn-warning" type="submit" disabled={isDisabled}>Generar Pedido</button>
-                <Link to="/shoppingCart">
-                    <Button variant="outline-warning">Volver al Carrito</Button>
-                </Link>
-            </div>
+                                isPossiblePhoneNumber(value) || "Ingresa un número telefónico válido",
+                        })} />
+                    {errors.telefono && <span className="formErrorMsg">{errors.telefono.message}</span>}
+                </div>
+                <div style={{ margin: "1rem", display: "flex", alignItems: "center", justifyContent: "center", gap: "2rem" }}>
+                    <p>Total a Pagar:</p>
+                    <h2>{toPesos(totalPrice())}</h2>
+                </div>
+                <div className="formButtons"
+                    style={{ margin: "1rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <Link to="/">
+                        <Button variant="outline-warning">Volver a la tienda</Button>
+                    </Link>
+                    <button className="submit btn btn-warning" type="submit"
+                    // disabled={isDisabled}
+                    >Generar Pedido</button>
+                    <Link to="/shoppingCart">
+                        <Button variant="outline-warning">Volver al Carrito</Button>
+                    </Link>
+                </div>
             </form>
             <div className='cart-header' >
                 <div >
                     <p>Estos son los productos en tu carrito</p>
                 </div>
             </div>
+            <CartListHeader />
+
             {
+
                 cart.map((prod) => (
                     <div key={prod.id}>
                         <CartList prod={prod} />

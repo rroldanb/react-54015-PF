@@ -19,6 +19,14 @@
     margin-right: 2px;
 }
 
+.btnDetailToCart{
+background-color: orange;
+}
+
+.btnDetailToCart:hover{
+    background-color: rgb(254, 180, 44);
+}
+
 .descripcionDetail h2, .descripcionDetail p, .caracteristicasDetail h3, .catacteristicasDetails{
 font-size: 1.2rem;
 margin-bottom: 0;

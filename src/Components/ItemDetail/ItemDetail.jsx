@@ -31,7 +31,6 @@ export default function ItemDetail({ producto, greeting, message }) {
       </header>
 
       <section className="ItemDetailContainer container text-center">
-        {/* <Row xs={1} md={2} className="g-2"> */}
         <Row xs={1} md={1} lg={2} className="g-2 justify-content-center">
 
           <Col className="align-items-center  details-left">
@@ -42,7 +41,7 @@ export default function ItemDetail({ producto, greeting, message }) {
             {isAdded ? (
             <div className="block">
               <div className="mx-2 mt-2" >
-                <Link to="/shoppingcart" className="btn btn-secondary" style={{fontSize:"1rem", color:"black", backgroundColor:"orange"}}>
+                <Link to="/shoppingcart" className="btn btn-secondary btnDetailToCart" style={{fontSize:"1rem", color:"black"}}>
                   Ir al Carrito
                 </Link>
                 <Link to= {`/categoria/${producto.categoryKey}`} className="btn btn-warning" style={{fontSize:"1rem"}}>
@@ -56,7 +55,7 @@ export default function ItemDetail({ producto, greeting, message }) {
                 handlerSuma={handleSumar}
                 handlerResta={handleRestar}
                 accionBoton={() => { addToCart( cantidad, producto, setIsAdded) }}
-                textoBoton="Agregar al carrito"
+                textoBoton="Agregar al Carro"
                 isAdded={isAdded}
               />
           ))}

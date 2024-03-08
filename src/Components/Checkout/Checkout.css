@@ -9,8 +9,8 @@
 .formFields{
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alinea los elementos horizontalmente */
-    justify-content: center; /* Alinea los elementos verticalmente */
+    align-items: center; 
+    justify-content: center; 
     width: 100%;
 }
 .formFields input{
@@ -25,3 +25,4 @@
 .submit{
     margin-top: .5rem;
 }
+

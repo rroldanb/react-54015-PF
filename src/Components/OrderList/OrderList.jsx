@@ -1,6 +1,7 @@
 import "./OrderList.css"
 import { useEffect, useState } from "react";
 import { toPesos } from "../../helpers/utils";
+import { Link } from "react-router-dom";
 
 
 
@@ -20,7 +21,11 @@ export default function OrderList({ orderedProduct }) {
     return (
     
         <div className="listaProductosOrdenados container">
-            <span><img src={orderedProduct.img} alt={orderedProduct.nombre} style={{width:"3rem"}}/></span>
+            <span>
+            <Link className="ver-mas" to={`/producto/${orderedProduct.id}`}>
+                <img src={orderedProduct.img} alt={orderedProduct.nombre} style={{width:"3rem"}}/>
+            </Link>
+                </span>
             <span>{orderedProduct.cantidad}</span>
             <span>{orderedProduct.nombre}</span>
             <span>{toPesos(precioUnitario)}</span>

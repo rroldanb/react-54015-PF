@@ -1,5 +1,5 @@
 
-import { Navbar, Container, Nav} from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 
 import "./NavBar.css";
@@ -50,12 +50,13 @@ export default function NavBar() {
           <LeonParrillero />
         </>
       ) : (
-        <>
+
+        <div className="navBarWrap container">
 
           <Navbar
 
 
-id="navbar"
+            id="navbar"
 
             bg="dark"
             data-bs-theme="dark"
@@ -69,7 +70,7 @@ id="navbar"
 
             <Container className="navBarCont">
               <Navbar.Brand
-              id="logo"
+                id="logo"
               >
                 <Link to="/" onClick={() => setExpanded(false)} >
                   <Logo width={70} height={70} />
@@ -79,8 +80,8 @@ id="navbar"
 
               <Navbar.Collapse id="basic-navbar" >
                 <Nav
-                id="navbar-right"
-                className="me-auto">
+                  id="navbar-right"
+                  className="me-auto">
                   {categories.map(categoria => (
                     <NavLink
                       key={categoria.id}
@@ -95,23 +96,21 @@ id="navbar"
                 </Nav>
                 <div>
 
-              <NavLink 
-               id="navbar-right-2"
-              to="/orders" onClick={() => setExpanded(false)} >Mis órdenes</NavLink>
+                  <NavLink
+                    id="navbar-right-2"
+                    to="/orders" onClick={() => setExpanded(false)} >Mis órdenes</NavLink>
                 </div>
               </Navbar.Collapse>
-              <NavLink 
-               id="navbar-right-3"
-              to="/shoppingcart" onClick={() => setExpanded(false)} >
+              <NavLink
+                id="navbar-right-3"
+                to="/shoppingcart" onClick={() => setExpanded(false)} >
                 <CartWidget />
               </NavLink>
             </Container>
           </Navbar>
+        </div>
 
-        </>
       )}
-
-
 
     </>
   );

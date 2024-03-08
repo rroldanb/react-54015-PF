@@ -70,11 +70,6 @@ Aunque no se han implementado mayores sistemas de seguridad para este proyecto, 
 - `register`: Función proporcionada por react-hook-form para registrar campos de formulario en componentes de React.
 - `handleSubmit`: Función proporcionada por react-hook-form para manejar la presentación de datos del formulario.
 
-
-###  libphonenumber-js
-- [isValidPhoneNumber](https://github.com/catamphetamine/libphonenumber-js#isvalidphonenumber)
- librería de validación de números de teléfono  robusta, que proporciona una validación completa y flexible de los números de teléfono.
-
 ### React Bootstrap
 - `Navbar`, `Container`, `Nav`: Componentes de React Bootstrap utilizados para crear una barra de navegación.
 - `Row`, `Col`: Componentes de React Bootstrap utilizados para definir filas y columnas en una cuadrícula.

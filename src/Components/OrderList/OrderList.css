@@ -4,8 +4,6 @@
   display: flex;
   max-width: 50rem;
   align-items: center;
-  /* border-top: 1px solid white; */
-  /* border-bottom: 1px solid white; */
   border: 1px solid white;
 
 }
@@ -35,6 +33,4 @@
 }
 .listaProductosOrdenados > span:nth-child(5) {
   flex-basis: 10rem;
-
-
 }

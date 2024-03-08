@@ -81,9 +81,7 @@ export default function OrderListContainer() {
 
             {(loading) && <div style={{ height: "10rem" }}> <img src="/leon.gif" alt="Buscando" /></div>}
             {order && (
-                <div className="orderDetailsContainer container">
-
-                    <div className="orderDetails container">
+                    <div className="orderDetailsContainer container">
                         <div className="orderDetailsHeader container">
                             <p>Detalles del Pedido:</p>
                             <h3> {order.id}</h3>
@@ -105,16 +103,15 @@ export default function OrderListContainer() {
                                 <OrderList orderedProduct={prod} />
                             </div>
                         ))}
-                    </div>
                     <div className="orderDatailsFooter container">
                         <Link to="/shoppingCart">
                             <Button variant="outline-warning" onClick={() => handleRepetirCompra(order.productos)}>Repetir la compra</Button>
                         </Link>
                         <p>Total:</p>
-                        <h2>{toPesos(order.total)}</h2>
+                        <h3>{toPesos(order.total)}</h3>
                     </div>
-
-                </div>
+                    </div>
+               
             )}
             {(busquedaVacia) && <p>No se encontró ningún pedido con el ID ingresado</p>}
 
