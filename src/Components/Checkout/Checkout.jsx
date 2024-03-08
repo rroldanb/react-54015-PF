@@ -127,7 +127,7 @@ const Checkout = () => {
                     {errors.emailConf && <span className="formErrorMsg">{errors.emailConf.message}</span>}
                 </div>
                 <div className="formFields phoneInput">
-                    <input type="tel" placeholder="Teléfono"
+                    <input type="tel" placeholder="Teléfono con código de país ej. +569 7777 8888"
                         {...register("telefono", {
                             required: {
                                 value: true,
@@ -143,7 +143,7 @@ const Checkout = () => {
                             },
                             validate: (value) =>
 
-                                isPossiblePhoneNumber(value) || "Ingresa un número telefónico válido",
+                                isPossiblePhoneNumber(value) || "Ingresa un número telefónico válido incluyendo código de país",
                         })} />
                     {errors.telefono && <span className="formErrorMsg">{errors.telefono.message}</span>}
                 </div>
