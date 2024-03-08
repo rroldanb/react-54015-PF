@@ -97,9 +97,11 @@ Aunque no se han implementado mayores sistemas de seguridad para este proyecto, 
 - `Routes`: Componente de React Router DOM utilizado para definir las rutas de la aplicación.
 - `Route`: Componente de React Router DOM utilizado para definir una ruta específica.
 - `Link`, `NavLink`: Componentes de React Router DOM utilizados para crear enlaces de navegación.
+##
 
+[Ver mi video demostración de Loom](https://www.loom.com/share/7076cc9fa0124826a6dd7f956f608526)
 
-
+![Descripción del GIF](./public/RR-GriilStore_Demo.gif)
 
 <sub>Por Rubén Roldán 03/2024</sub>  
 <small>
