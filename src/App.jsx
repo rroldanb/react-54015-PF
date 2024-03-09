@@ -12,19 +12,20 @@ import NotFoundPage from "./Components/NotFoundPage/NotFoundPage";
 import OrderListContainer from "./Components/OrderListContainer/OrderListContainer";
 
 
+
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/" element={<ItemListContainer />} errorElement={<NotFoundPage />} />
           <Route path="/categoria/:categoryId" element={<ItemListContainer />} />
           <Route path="/producto/:itemId" element={<ItemDetailContainer />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/shoppingcart" element={<CartContainer />} />
           <Route path="/orders" element={<OrderListContainer />} />
-          <Route path="*" element={<NotFoundPage />} /> {/* Ruta por defecto */}
+          <Route path="*" element={<NotFoundPage />} /> {/* Ruta por defecto que resulta en ambiente de dasarrollo pro no en Vercel */}
         </Routes>
         <Footer />
       </BrowserRouter>
